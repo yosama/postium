@@ -104,7 +104,16 @@ export class PostService {
     | Una pista más, por si acaso: HttpParams.                                 |
     |=========================================================================*/
 
-     return this._http.get<Post[]>(`${environment.backendUri}/posts`);
+    console.log("PostServiceCategoryid:"+id)
+
+    const data : Observable<Post[]> = this.getPosts().map(posts => {
+        return posts.filter(posts => {
+          const categoriesFounded = posts.categories.filter(categories => categories.id == id);
+          return categoriesFounded.length > 0;
+        });
+    });
+
+     return data;
   }
 
   getPostDetails(id: number): Observable<Post> {

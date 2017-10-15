@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 import { Category } from '../category';
 
@@ -10,6 +10,7 @@ import { Category } from '../category';
 export class CategoryBoxComponent {
 
   @Input() categories: Category[];
+  @Output() categoryClicked = new EventEmitter<Category>();
 
   /*=========================================================================|
   | Yellow Path                                                              |
@@ -21,4 +22,7 @@ export class CategoryBoxComponent {
   | además, un manejador para el mismo.                                      |
   |=========================================================================*/
 
+  notificationGetPostsByCategory(category) {
+    this.categoryClicked.emit(category);
+  } 
 }

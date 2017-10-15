@@ -38,6 +38,8 @@
   | Suscribe el componente CategoryBoxComponent al evento que hayas definido |
   | en él para notificar los clics sobre las categorías del post.            |
   |========================================================================-->
-  <app-category-box [categories]="post.categories"></app-category-box>
+  <app-category-box [categories]="post.categories"
+  (categoryClicked)="getPostsByCategory($event)"
+  ></app-category-box>
 
 </div>
