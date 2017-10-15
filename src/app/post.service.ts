@@ -104,8 +104,6 @@ export class PostService {
     | Una pista más, por si acaso: HttpParams.                                 |
     |=========================================================================*/
 
-    console.log("PostServiceCategoryid:"+id)
-
     const data : Observable<Post[]> = this.getPosts().map(posts => {
         return posts.filter(posts => {
           const categoriesFounded = posts.categories.filter(categories => categories.id == id);
@@ -131,8 +129,8 @@ export class PostService {
     | práctica retornar la misma con los datos actualizados obtenidos tras la  |
     | inserción.                                                               |
     |=========================================================================*/
-
-    return null;
+ 
+    return this._http.post<Post>(`${environment.backendUri}/posts`, post);
   }
 
 }

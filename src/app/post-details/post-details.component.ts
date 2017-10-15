@@ -40,6 +40,7 @@ export class PostDetailsComponent implements OnInit {
   | '/posts/users', pasando como parámetro el identificador del autor.       |
   |=========================================================================*/
   getPostByAuthor(authorId: Number){
+      console.log(authorId);
       this._router.navigate([`posts/users/${authorId}`]);
   }
 
