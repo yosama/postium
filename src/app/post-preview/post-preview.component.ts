@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 import { Post } from '../post';
 
@@ -10,7 +10,7 @@ import { Post } from '../post';
 export class PostPreviewComponent {
 
   @Input() post: Post;
-
+ 
   /*=========================================================================|
   | Red Path                                                                 |
   |==========================================================================|
@@ -30,6 +30,12 @@ export class PostPreviewComponent {
   | dicho clic se realiza en el template de este componente, necesitas,      |
   | además, un manejador para el mismo.                                      |
   |=========================================================================*/
+
+  @Output() postClicked = new EventEmitter<Post>();
+
+  notificationClickedPost(post: Post): void {
+    this.postClicked.emit(post);
+  }
 
   plainTextToHtml(text: string): string {
     return text ? `<p>${text.replace(/\n/gi, '</p><p>')}</p>` : '';
