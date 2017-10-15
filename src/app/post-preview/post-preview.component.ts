@@ -1,6 +1,7 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 import { Post } from '../post';
+import { User } from '../user';
 
 @Component({
   selector: 'app-post-preview',
@@ -32,9 +33,14 @@ export class PostPreviewComponent {
   |=========================================================================*/
 
   @Output() postClicked = new EventEmitter<Post>();
+  @Output() authorClicked = new EventEmitter<User>();
 
   notificationClickedPost(post: Post): void {
     this.postClicked.emit(post);
+  }
+
+  notificationClickedAuthor(user: User): void {
+    this.authorClicked.emit(user);
   }
 
   plainTextToHtml(text: string): string {

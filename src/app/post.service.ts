@@ -1,5 +1,5 @@
 import { Injectable, Inject } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 
 
 import { Observable } from 'rxjs/Observable';
@@ -40,7 +40,6 @@ export class PostService {
       .set("_order","Desc")
     }
 
-    
     return this._http.get<Post[]>(`${environment.backendUri}/posts`, options);
   }
 
@@ -66,7 +65,13 @@ export class PostService {
     | Una pista más, por si acaso: HttpParams.                                 |
     |=========================================================================*/
 
-     return this._http.get<Post[]>(`${environment.backendUri}/posts`);
+    const params = new HttpParams()
+      .set("author.id",id.toString())
+      .set("publicationDate_lte",new Date().getTime().toString())
+      .set("_sort","publicationDate")
+      .set("_order","DESC");
+
+     return this._http.get<Post[]>(`${environment.backendUri}/posts`, {params});
   }
 
   getCategoryPosts(id: number): Observable<Post[]> {

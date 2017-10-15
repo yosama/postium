@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { Post } from '../post';
+import { User } from '../user';
 
 
 
@@ -27,6 +28,10 @@ export class PostsListComponent {
   | Router de la app. La ruta a navegar es '/posts/users', pasando como      |
   | parámetro el identificador del autor.                                    |
   |=========================================================================*/
+  showPostByAuthor(author: User) {
+    console.log(author)
+    this._router.navigate([`/posts/users/${author.id}`]);
+  }
 
   /*=========================================================================|
   | Green Path                                                               |

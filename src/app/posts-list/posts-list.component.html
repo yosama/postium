@@ -15,5 +15,6 @@
 
 <app-post-preview *ngFor="let post of posts" 
     [post]="post" 
+    (authorClicked)="showPostByAuthor(post.author)"
     (postClicked)="showPostDetail(post)">
 </app-post-preview>
